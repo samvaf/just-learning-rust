@@ -5,13 +5,6 @@ RUN apt-get update && apt-get install -y \
     pkg-config libssl-dev bash \
     && rm -rf /var/lib/apt/lists/*
 
-ENV RUSTUP_HOME=/usr/local/rustup \
-    CARGO_HOME=/usr/local/cargo
-ENV PATH="${CARGO_HOME}/bin:${PATH}"
-
-RUN curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf \
-    | sh -s -- -y --no-modify-path
-
 # Set up user
 ARG USERNAME=samvaf
 ARG USER_UID=1001
@@ -27,3 +20,12 @@ RUN groupadd --gid $USER_GID $USERNAME \
 
 USER $USERNAME
 WORKDIR /workspace
+
+ENV RUSTUP_HOME=/home/${USERNAME}/.rustup \
+    CARGO_HOME=/home/${USERNAME}/.cargo
+ENV PATH="${CARGO_HOME}/bin:${PATH}"
+
+# Install Rust toolchain as the non-root user
+RUN curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf \
+    | sh -s -- -y --no-modify-path
+
