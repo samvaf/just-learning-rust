@@ -1,0 +1,14 @@
+{
+  "name": "Rust Learning Dev Container",
+  "build": {
+    "dockerfile": "../dockers/Dockerfile",
+    "context": ".."
+  },
+  "remoteUser": "samvaf",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "runArgs": ["--hostname", "rust-dev"],
+  "workspaceFolder": "/workspace",
+  "mounts": [
+    "source=${env:HOME}/.ssh,target=/home/samvaf/.ssh,type=bind"
+  ]
+}
