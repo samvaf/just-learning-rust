@@ -1,0 +1,23 @@
+# ---- Rust / Cargo ----
+# Compiled files and build artifacts
+/target/
+
+# Debug and release build outputs (sometimes used by older tooling)
+**/*.rs.bk
+
+# ---- Cargo / dependency caching ----
+# If using cargo workspaces, this will cover workspace target dirs
+**/target/
+
+# ---- Rustfmt temporary files ----
+**/*.rs.bk
+
+# ---- VS Code ----
+.vscode/
+
+# ---- Logs ----
+*.log
+
+# ---- Misc ----
+/dist/
+/out/
